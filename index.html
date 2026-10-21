@@ -9,7 +9,7 @@
 <style>
 :root {
   --bg: #f1f5f9; --card: #ffffff; --tx: #0f172a; --mu: #64748b; --bd: #e2e8f0;
-  --pr: #2563eb; --pr-hov: #1d4ed8; --prt: #ffffff;
+  --pr: #2563eb; --pr-hov: #1d4ed8; --prt: #ffffff; --prb: #dbeafe;
   --full: #10b981; --fullb: #d1fae5;
   --half: #f59e0b; --halfb: #fef3c7;
   --abs: #ef4444; --absb: #fee2e2;
@@ -20,7 +20,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0f172a; --card: #1e293b; --tx: #f8fafc; --mu: #94a3b8; --bd: #334155;
-    --pr: #3b82f6; --pr-hov: #2563eb; --prt: #ffffff;
+    --pr: #3b82f6; --pr-hov: #2563eb; --prt: #ffffff; --prb: #1e3a8a;
     --full: #10b981; --fullb: #064e3b;
     --half: #f59e0b; --halfb: #78350f;
     --abs: #ef4444; --absb: #7f1d1d;
@@ -29,7 +29,7 @@
 }
 :root[data-theme="dark"] {
   --bg: #0f172a; --card: #1e293b; --tx: #f8fafc; --mu: #94a3b8; --bd: #334155;
-  --pr: #3b82f6; --pr-hov: #2563eb; --prt: #ffffff;
+  --pr: #3b82f6; --pr-hov: #2563eb; --prt: #ffffff; --prb: #1e3a8a;
   --full: #10b981; --fullb: #064e3b; --half: #f59e0b; --halfb: #78350f;
   --abs: #ef4444; --absb: #7f1d1d; --rest: #a78bfa; --restb: #4c1d95;
 }
@@ -61,7 +61,9 @@ label { display: block; font-weight: 700; margin-bottom: 14px; font-size: 14px; 
 label input, label textarea { margin-top: 6px; }
 .fld { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
 .fld input { margin: 0; text-align: left; }
-.fld span { color: var(--mu); font-weight: 700; font-size: 14px; min-width: 45px; text-align: center; background: var(--bg); padding: 12px 8px; border-radius: 10px; border: 1px solid var(--bd); }
+.fld span { color: var(--mu); font-weight: 700; font-size: 14px; min-width: 52px; text-align: center; background: var(--bg); padding: 12px 8px; border-radius: 10px; border: 1px solid var(--bd); }
+.fld.hi input { border-color: var(--pr); background: var(--card); }
+.fld.hi span { background: var(--prb); color: var(--pr); border-color: var(--pr); }
 .err { color: var(--abs); min-height: 1.4em; font-size: 14px; margin-bottom: 10px; font-weight: 700; }
 
 /* شاشة الدخول */
@@ -87,14 +89,14 @@ label input, label textarea { margin-top: 6px; }
 .wal .big { font-size: 36px; font-weight: 800; line-height: 1.2; margin-top: 6px; }
 .wal .row { display: flex; justify-content: space-between; gap: 8px; margin-top: 16px; font-size: 13px; font-weight: 700; background: rgba(0,0,0,0.18); padding: 10px 14px; border-radius: 12px; }
 
-/* التقويم (تم إصلاح الخروج عن الإطار) */
+/* التقويم */
 .mn { display: flex; justify-content: space-between; align-items: center; margin: 6px 0 14px; }
 .mn h2 { font-size: 19px; font-weight: 800; }
 .grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; width: 100%; }
 .wd { text-align: center; font-size: 12px; font-weight: 700; color: var(--mu); padding-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .day { aspect-ratio: 1; width: 100%; min-width: 0; border-radius: 10px; border: 1.5px solid var(--bd); background: var(--bg); color: var(--tx); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; cursor: pointer; padding: 2px; transition: transform 0.12s, background 0.2s; }
 .day b { font-size: 14px; font-weight: 800; line-height: 1.1; }
-.day em { font-style: normal; font-size: 11px; font-weight: 800; min-height: 14px; line-height: 1; margin-top: 2px; }
+.day em { font-style: normal; font-size: 10px; font-weight: 800; min-height: 14px; line-height: 1; margin-top: 2px; direction: ltr; }
 .day.fri { border-style: dashed; }
 .day.full { background: var(--fullb); border-color: var(--full); border-style: solid; } .day.full em { color: var(--full); }
 .day.half { background: var(--halfb); border-color: var(--half); border-style: solid; } .day.half em { color: var(--half); }
@@ -125,24 +127,38 @@ label input, label textarea { margin-top: 6px; }
 .yr { display: flex; justify-content: space-between; align-items: center; width: 100%; text-align: start; background: var(--bg); border: 1px solid var(--bd); border-radius: 12px; padding: 14px; margin-bottom: 8px; color: var(--tx); cursor: pointer; }
 .yr strong { font-size: 16px; font-weight: 800; color: var(--pr); }
 
-/* النافذة المنبثقة */
+/* النافذة المنبثقة وخيار الساعات الإضافية */
 .ov { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(3px); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
 .ov[hidden] { display: none; }
-.sheet { background: var(--card); color: var(--tx); width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; border-radius: 22px 22px 0 0; padding: 20px 18px calc(22px + env(safe-area-inset-bottom, 0px)); }
+.sheet { background: var(--card); color: var(--tx); width: 100%; max-width: 540px; max-height: 92vh; overflow-y: auto; border-radius: 22px 22px 0 0; padding: 20px 18px calc(22px + env(safe-area-inset-bottom, 0px)); }
 .sheet h3 { margin-bottom: 14px; font-size: 20px; font-weight: 800; text-align: center; }
-.opt { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px; border: 2px solid var(--bd); border-radius: 14px; background: var(--bg); font-size: 15px; color: var(--tx); cursor: pointer; margin-bottom: 8px; text-align: start; }
-.opt.sel { border-color: var(--pr); background: var(--card); }
-.stamp { width: 40px; height: 40px; border: 2px solid var(--mu); border-radius: 10px; display: grid; place-items: center; font-size: 18px; font-weight: 800; color: var(--mu); flex: none; }
+.opt { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 12px; border: 2px solid var(--bd); border-radius: 14px; background: var(--bg); font-size: 15px; color: var(--tx); cursor: pointer; margin-bottom: 8px; text-align: start; transition: 0.15s; }
+.opt.sel { border-color: var(--pr); background: var(--card); box-shadow: 0 3px 10px rgba(37,99,235,0.08); }
+.stamp { width: 38px; height: 38px; border: 2px solid var(--mu); border-radius: 10px; display: grid; place-items: center; font-size: 17px; font-weight: 800; color: var(--mu); flex: none; }
 .stamp.full { color: var(--full); border-color: var(--full); background: var(--fullb); }
 .stamp.half { color: var(--half); border-color: var(--half); background: var(--halfb); }
 .stamp.abs { color: var(--abs); border-color: var(--abs); background: var(--absb); }
 .stamp.rest { color: var(--rest); border-color: var(--rest); background: var(--restb); }
 
+/* صندوق اختيار الساعات الإضافية */
+.ot-box { background: var(--bg); border: 1.5px solid var(--bd); border-radius: 16px; padding: 14px; margin: 12px 0; }
+.ot-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.ot-head b { font-size: 15px; }
+.ot-badge { background: var(--prb); color: var(--pr); font-weight: 800; font-size: 13px; padding: 4px 10px; border-radius: 20px; }
+.ot-pills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+.ot-pill { border: 1.5px solid var(--bd); background: var(--card); color: var(--tx); border-radius: 10px; padding: 9px 4px; font-weight: 800; font-size: 14px; cursor: pointer; text-align: center; transition: 0.15s; }
+.ot-pill.on { border-color: var(--pr); background: var(--pr); color: #fff; }
+.ot-ctrl { display: flex; align-items: center; gap: 8px; }
+.ot-ctrl button { width: 44px; height: 44px; border-radius: 12px; border: 1.5px solid var(--bd); background: var(--card); color: var(--tx); font-size: 20px; font-weight: 800; cursor: pointer; flex-shrink: 0; }
+.ot-ctrl button:active { background: var(--pr); color: #fff; }
+.ot-ctrl input { text-align: center; margin: 0; height: 44px; font-size: 18px; }
+.day-tot { display: flex; justify-content: space-between; align-items: center; background: var(--prb); color: var(--pr); padding: 12px 14px; border-radius: 12px; margin-bottom: 12px; font-weight: 800; font-size: 15px; }
+
 .toast { position: fixed; inset-inline: 16px; bottom: calc(78px + env(safe-area-inset-bottom, 0px)); max-width: 400px; margin: 0 auto; background: var(--tx); color: var(--bg); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; z-index: 60; font-weight: 700; font-size: 14px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
 .toast[hidden] { display: none; }
 .toast button { background: var(--pr); border: 0; color: #fff; font-weight: 700; border-radius: 8px; padding: 5px 10px; cursor: pointer; }
 
-.pv-box { background: var(--bg); border: 1px solid var(--bd); border-radius: 12px; padding: 12px; margin-bottom: 16px; font-size: 14px; line-height: 1.8; }
+.pv-box { background: var(--bg); border: 1px solid var(--bd); border-radius: 12px; padding: 12px; margin-bottom: 16px; font-size: 14px; line-height: 1.9; }
 </style>
 </head>
 <body>
@@ -158,12 +174,10 @@ const $ = s => document.querySelector(s), pad = n => String(n).padStart(2, '0');
 const MN = ['جانفي','فيفري','مارس','أفريل','ماي','جوان','جويلية','أوت','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
 const WD = ['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
 
-// الإعدادات الافتراضية (الساعة الإضافية = 250 دج)
 const DEF = { salary: 47000, rest: 1160, base: 26, restN: 4, inc: true, hours: 10, half: 50, ot: 250, fri: 100 };
 const IC = { full: '✓', half: '½', abs: '✕', rest: '☾' };
 const LB = (t, f) => t === 'full' ? (f ? 'عمل يوم الجمعة' : 'عمل كامل') : t === 'half' ? 'توقف (نصف يوم)' : t === 'abs' ? 'غياب' : 'راحة مدفوعة';
 
-// تنسيق الأرقام بشكل يمنع انعكاسها في العربية
 const fmtNum = n => {
   const v = Math.round(n);
   return (v < 0 ? '-' : '') + Math.abs(v).toLocaleString('en-US');
@@ -173,7 +187,6 @@ const ymd = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.get
 const nw = () => new Date();
 const dow = k => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d).getDay(); };
 
-// أيقونات الشريط السفلي (تم إصلاح مفتاح year)
 const icons = {
   cal: `<svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>`,
   wd: `<svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>`,
@@ -209,7 +222,6 @@ function fromServer(d) {
     days: {},
     w: (d.withdrawals || []).map(x => ({ id: x.id, date: x.date, amount: x.amount, n: x.note || '' }))
   };
-  // ترقية تلقائية لسعر الساعة الإضافية إلى 250 دج إذا كانت على القيمة القديمة 50
   if (S.d.set.ot === 50 && !rd('wt:ot250')) {
     S.d.set.ot = 250;
     wr('wt:ot250', '1');
@@ -218,12 +230,15 @@ function fromServer(d) {
   (d.days || []).forEach(x => { S.d.days[x.date] = { s: x.status, x: x.extraHours || 0, n: x.note || '' } });
 }
 
+// حساب أجرة اليوم الدقيقة والساعة الإضافية
 function rt() {
-  const s = S.d.set, W = (s.inc ? s.salary - s.rest * s.restN : s.salary) / (s.base || 26);
-  return { W, Hr: W / (s.hours || 10), Ot: s.ot || 250 };
+  const s = S.d.set;
+  const base = s.base || 26;
+  const restN = s.restN || 4;
+  const W = Math.max(0, (s.inc ? s.salary - s.rest * restN : s.salary) / base);
+  return { W, Hr: W / (s.hours || 10), Ot: s.ot ?? 250 };
 }
 
-// حساب الراتب بدون أي أرقام وهمية (يبدأ من 0 دج ولا يحسب إلا ما تم تسجيله فعلياً)
 function pay(p) {
   const s = S.d.set, { W, Hr, Ot } = rt(), [y, m] = p.split('-').map(Number), n = new Date(y, m, 0).getDate();
   const r = { full: 0, half: 0, abs: 0, fw: 0, xh: 0, rest: 0, W, Hr, Ot };
@@ -232,13 +247,13 @@ function pay(p) {
     if (!e) continue;
     if (e.s === 'full') { f ? r.fw++ : r.full++; r.xh += e.x || 0; }
     else if (e.s === 'half') { r.half++; r.xh += e.x || 0; }
-    else if (e.s === 'rest') { r.rest++; }
+    else if (e.s === 'rest') { r.rest++; r.xh += e.x || 0; }
     else if (e.s === 'abs') { r.abs++; }
   }
   r.pFull = r.full * W;
   r.pHalf = r.half * W * (s.half / 100);
   r.pFw = r.fw * W * (1 + s.fri / 100);
-  r.pX = r.xh * Ot; // كل ساعة إضافية تضرب مباشرة في سعر الساعة الإضافية (250 دج)
+  r.pX = r.xh * Ot;
   r.pRest = r.rest * s.rest;
   r.gross = r.pFull + r.pHalf + r.pFw + r.pX + r.pRest;
   r.wd = S.d.w.filter(x => x.date.startsWith(p)).reduce((a, x) => a + x.amount, 0);
@@ -288,7 +303,8 @@ function calView() {
   let g = WD.map(w => `<div class="wd">${w.slice(0, 3)}</div>`).join('') + '<i></i>'.repeat(first);
   for (let d = 1; d <= n; d++) {
     const k = p + '-' + pad(d), e = S.d.days[k], f = (first + d - 1) % 7 === 6, st = e ? e.s : '';
-    g += `<button class="day ${st} ${k === td ? 'today' : ''} ${f ? 'fri' : ''} ${S.pick.has(k) ? 'pk' : ''}" data-a="day" data-v="${k}"><b>${d}</b><em>${st ? IC[st] : (f ? 'ج' : '')}${e && e.x ? '+' + e.x : ''}</em>${e && e.n ? '<u></u>' : ''}</button>`;
+    const xTxt = e && e.x ? `+${e.x}س` : '';
+    g += `<button class="day ${st} ${k === td ? 'today' : ''} ${f ? 'fri' : ''} ${S.pick.has(k) ? 'pk' : ''}" data-a="day" data-v="${k}"><b>${d}</b><em>${st ? IC[st] : (f ? 'ج' : '')}${xTxt ? ' ' + xTxt : ''}</em>${e && e.n ? '<u></u>' : ''}</button>`;
   }
   const rows = [
     ln('full', 'عمل كامل × ' + c.full, money(c.pFull)),
@@ -340,16 +356,19 @@ function pvText() {
 }
 
 function setView() {
-  const s = S.d.set, f = (k, l, u) => `<label>${l}<div class="fld"><input data-k="${k}" type="number" dir="ltr" value="${s[k]}"><span>${u}</span></div></label>`;
+  const s = S.d.set, { W } = rt();
+  const cleanW = Math.round(W * 100) / 100;
+  const f = (k, l, u, id = '', hi = false) => `<label>${l}<div class="fld ${hi ? 'hi' : ''}"><input ${id ? `id="${id}"` : ''} data-k="${k}" type="number" step="any" dir="ltr" value="${k === 'daily' ? cleanW : s[k]}"><span>${u}</span></div></label>`;
   return `<section class="card">
       <h3 style="margin-bottom:12px">إعدادات الأجر والحساب</h3>
       <div class="pv-box" id="pv">${pvText()}</div>
-      ${f('ot', 'سعر الساعة الإضافية الواحدة', 'دج')}
-      ${f('salary', 'الراتب الشهري الكلي', 'دج')}
-      ${f('rest', 'أجر يوم الراحة (الجمعة)', 'دج')}
-      ${f('base', 'عدد أيام العمل في الشهر', 'يوم')}
-      ${f('hours', 'ساعات العمل في اليوم', 'ساعة')}
-      ${f('half', 'نسبة أجر يوم التوقف', '%')}
+      ${f('daily', 'أجرة اليوم الواحد (الدقيقة)', 'دج', 'inp-daily', true)}
+      ${f('ot', 'سعر الساعة الإضافية الواحدة', 'دج', 'inp-ot', true)}
+      ${f('salary', 'الراتب الشهري الكلي (يتحدث تلقائياً)', 'دج', 'inp-salary')}
+      ${f('rest', 'أجر يوم الراحة (الجمعة)', 'دج', 'inp-rest')}
+      ${f('base', 'عدد أيام العمل في الشهر', 'يوم', 'inp-base')}
+      ${f('hours', 'ساعات العمل في اليوم', 'ساعة', 'inp-hours')}
+      ${f('half', 'نسبة أجر يوم التوقف', '%', 'inp-half')}
     </section>
     <section class="card">
       <h3 style="margin-bottom:8px">إدارة الحساب</h3>
@@ -363,18 +382,53 @@ function setView() {
     </section>`;
 }
 
+// حساب إجمالي اليوم المفتوح في النافذة المنبثقة
+function calcSheetDayTotal() {
+  if (!S.sh) return;
+  const f = dow(S.sh.k) === 5, s = S.d.set, { W, Ot } = rt();
+  const amt = { full: f ? W * (1 + s.fri / 100) : W, half: W * s.half / 100, abs: 0, rest: s.rest };
+  const baseAmt = amt[S.sh.s] || 0;
+  const xh = S.sh.s === 'abs' ? 0 : (parseFloat(S.sh.x) || 0);
+  const otAmt = xh * Ot;
+  const badge = $('#ot-badge');
+  if (badge) badge.textContent = xh > 0 ? `+${xh} س = +${money(otAmt)}` : 'بدون ساعات إضافية';
+  const totEl = $('#day-tot-val');
+  if (totEl) totEl.textContent = money(baseAmt + otAmt);
+  document.querySelectorAll('.ot-pill').forEach(b => b.classList.toggle('on', parseFloat(b.dataset.v) === xh));
+}
+
 function openDay(k) {
   const e = S.d.days[k] || {}, [y, m, d] = k.split('-').map(Number), f = dow(k) === 5, s = S.d.set, { W, Ot } = rt();
   const amt = { full: f ? W * (1 + s.fri / 100) : W, half: W * s.half / 100, abs: 0, rest: s.rest };
-  S.sh = { k, s: e.s || (f ? 'rest' : 'full') };
+  S.sh = { k, s: e.s || (f ? 'rest' : 'full'), x: e.x || 0 };
   const opts = f ? ['rest', 'full', 'abs'] : ['full', 'half', 'rest', 'abs'];
+  const pills = [0, 1, 2, 3, 4, 5, 6, 8];
+
   $('#sheet').innerHTML = `<h3>${WD[(dow(k)+1)%7]} ${d} ${MN[m-1]}</h3>` +
     opts.map(t => `<button class="opt ${S.sh.s === t ? 'sel' : ''}" data-a="pick" data-v="${t}"><span class="stamp ${t}">${IC[t]}</span><span><b>${LB(t, f)}</b><br><span class="sm mu">${t === 'abs' ? '0 دج' : '+' + money(amt[t])}</span></span></button>`).join('') +
-    `<label style="margin-top:14px">ساعات إضافية (سعر الساعة: ${money(Ot)})<input id="xh" type="number" step="0.5" min="0" max="15" dir="ltr" value="${e.x || ''}" placeholder="0"></label>
-    <label>ملاحظة<textarea id="note" rows="2" placeholder="أضف ملاحظة إن وجدت...">${esc(e.n || '')}</textarea></label>
+    `<div class="ot-box">
+      <div class="ot-head">
+        <b>كم ساعة إضافية زدت؟ (${money(Ot)}/س)</b>
+        <span class="ot-badge" id="ot-badge"></span>
+      </div>
+      <div class="ot-pills">
+        ${pills.map(h => `<button type="button" class="ot-pill ${S.sh.x === h ? 'on' : ''}" data-a="setxh" data-v="${h}">${h === 0 ? 'بدون' : '+' + h + ' س'}</button>`).join('')}
+      </div>
+      <div class="ot-ctrl">
+        <button type="button" data-a="stepxh" data-v="1">+</button>
+        <input id="xh" type="number" step="0.5" min="0" max="24" dir="ltr" value="${S.sh.x}" placeholder="0">
+        <button type="button" data-a="stepxh" data-v="-1">−</button>
+      </div>
+    </div>
+    <div class="day-tot">
+      <span>إجمالي أجر هذا اليوم:</span>
+      <span id="day-tot-val">0 دج</span>
+    </div>
+    <label>ملاحظة (اختياري)<textarea id="note" rows="2" placeholder="أضف ملاحظة إن وجدت...">${esc(e.n || '')}</textarea></label>
     <p id="serr" class="err"></p>
     <div class="acts"><button class="btn wide" data-a="save">حفظ اليوم</button>${e.s ? '<button class="btn danger" data-a="clr">حذف</button>' : ''}</div>`;
   $('#ov').hidden = false;
+  calcSheetDayTotal();
 }
 
 const closeSheet = () => { $('#ov').hidden = true; };
@@ -405,11 +459,31 @@ function act(a, v) {
       sync('POST', '/data/days/bulk', { dates: ks, status: v });
       S.pick.clear(); S.multi = false; render(); toast('تم تسجيل الأيام المحددة.'); break;
     }
-    case 'pick': S.sh.s = v; document.querySelectorAll('.opt').forEach(b => b.classList.toggle('sel', b.dataset.v === v)); break;
+    case 'pick': {
+      S.sh.s = v;
+      if (v === 'abs') { S.sh.x = 0; if ($('#xh')) $('#xh').value = 0; }
+      document.querySelectorAll('.opt').forEach(b => b.classList.toggle('sel', b.dataset.v === v));
+      calcSheetDayTotal();
+      break;
+    }
+    case 'setxh': {
+      S.sh.x = Math.max(0, parseFloat(v) || 0);
+      if ($('#xh')) $('#xh').value = S.sh.x;
+      calcSheetDayTotal();
+      break;
+    }
+    case 'stepxh': {
+      const cur = parseFloat($('#xh')?.value) || 0;
+      S.sh.x = Math.max(0, Math.min(24, cur + parseFloat(v)));
+      if ($('#xh')) $('#xh').value = S.sh.x;
+      calcSheetDayTotal();
+      break;
+    }
     case 'save': {
       const s = S.sh.s; if (!s) { $('#serr').textContent = 'اختر الحالة أولاً.'; break; }
-      let x = parseFloat($('#xh').value) || 0; const n = $('#note').value.trim();
-      if ((s === 'abs' || s === 'rest') && x > 0) x = 0;
+      let x = Math.max(0, parseFloat($('#xh').value) || 0);
+      const n = $('#note').value.trim();
+      if (s === 'abs') x = 0;
       S.d.days[S.sh.k] = { s, x, n };
       sync('PUT', '/data/days/' + S.sh.k, { status: s, extraHours: x, note: n });
       closeSheet(); render(); break;
@@ -450,12 +524,36 @@ function act(a, v) {
 }
 
 document.addEventListener('click', e => { const el = e.target.closest('[data-a]'); if (el) act(el.dataset.a, el.dataset.v); else if (e.target.id === 'ov') closeSheet(); });
+
 document.addEventListener('input', e => {
-  if (e.target.dataset.k) {
-    S.d.set[e.target.dataset.k] = parseFloat(e.target.value) || 0;
-    const pv = $('#pv'); if (pv) pv.innerHTML = pvText();
-    clearTimeout(t2); t2 = setTimeout(() => sync('PUT', '/data/settings', S.d.set), 500);
+  if (e.target.id === 'xh' && S.sh) {
+    S.sh.x = Math.max(0, parseFloat(e.target.value) || 0);
+    calcSheetDayTotal();
+    return;
   }
+  const k = e.target.dataset.k;
+  if (!k) return;
+  const val = parseFloat(e.target.value) || 0;
+  const s = S.d.set;
+
+  if (k === 'daily') {
+    // عند إدخال أجرة اليوم الدقيقة، يتم تحديث الراتب الكلي تلقائياً ليحفظ في قاعدة البيانات بدقة
+    const base = s.base || 26;
+    const restN = s.restN || 4;
+    s.salary = val * base + (s.inc ? s.rest * restN : 0);
+    const salInp = $('#inp-salary');
+    if (salInp) salInp.value = Math.round(s.salary);
+  } else {
+    s[k] = val;
+    if (['salary', 'rest', 'base'].includes(k)) {
+      const { W } = rt();
+      const dailyInp = $('#inp-daily');
+      if (dailyInp) dailyInp.value = Math.round(W * 100) / 100;
+    }
+  }
+
+  const pv = $('#pv'); if (pv) pv.innerHTML = pvText();
+  clearTimeout(t2); t2 = setTimeout(() => sync('PUT', '/data/settings', S.d.set), 400);
 });
 
 document.addEventListener('submit', async e => {
