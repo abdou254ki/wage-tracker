@@ -7,21 +7,20 @@
 <title>دفتر أيام العمل</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-/* --- المتغيرات والألوان العصرية --- */
 :root {
-  --bg: #f3f6f9; --card: #ffffff; --tx: #1e293b; --mu: #64748b; --bd: #e2e8f0;
+  --bg: #f1f5f9; --card: #ffffff; --tx: #0f172a; --mu: #64748b; --bd: #e2e8f0;
   --pr: #2563eb; --pr-hov: #1d4ed8; --prt: #ffffff;
   --full: #10b981; --fullb: #d1fae5;
   --half: #f59e0b; --halfb: #fef3c7;
   --abs: #ef4444; --absb: #fee2e2;
   --rest: #8b5cf6; --restb: #ede9fe;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0f172a; --card: #1e293b; --tx: #f8fafc; --mu: #94a3b8; --bd: #334155;
-    --pr: #3b82f6; --pr-hov: #60a5fa; --prt: #ffffff;
+    --pr: #3b82f6; --pr-hov: #2563eb; --prt: #ffffff;
     --full: #10b981; --fullb: #064e3b;
     --half: #f59e0b; --halfb: #78350f;
     --abs: #ef4444; --absb: #7f1d1d;
@@ -30,138 +29,120 @@
 }
 :root[data-theme="dark"] {
   --bg: #0f172a; --card: #1e293b; --tx: #f8fafc; --mu: #94a3b8; --bd: #334155;
-  --pr: #3b82f6; --pr-hov: #60a5fa; --prt: #ffffff;
+  --pr: #3b82f6; --pr-hov: #2563eb; --prt: #ffffff;
   --full: #10b981; --fullb: #064e3b; --half: #f59e0b; --halfb: #78350f;
   --abs: #ef4444; --absb: #7f1d1d; --rest: #a78bfa; --restb: #4c1d95;
 }
 
-/* --- الإعدادات الأساسية --- */
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body { background: var(--bg); color: var(--tx); font-family: 'Tajawal', system-ui, sans-serif; line-height: 1.5; transition: background 0.3s, color 0.3s; overflow-x: hidden; }
-button { font-family: inherit; outline: none; }
-input, textarea { font-family: inherit; outline: none; }
+button, input, textarea { font-family: inherit; outline: none; }
 
-/* --- الهيكل الرئيسي --- */
-#app { padding-bottom: calc(75px + env(safe-area-inset-bottom, 0px)); }
-.wrap { max-width: 600px; margin: 0 auto; padding: 16px; }
-.card { background: var(--card); border: 1px solid var(--bd); border-radius: 16px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: background 0.3s, border-color 0.3s; }
+#app { padding-bottom: calc(82px + env(safe-area-inset-bottom, 0px)); }
+.wrap { max-width: 540px; margin: 0 auto; padding: 14px; }
+.card { background: var(--card); border: 1px solid var(--bd); border-radius: 18px; padding: 16px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); transition: background 0.3s, border-color 0.3s; overflow: hidden; }
 
-/* --- النصوص والأدوات --- */
 .sm { font-size: 13px; } .mu { color: var(--mu); } .wide { width: 100%; }
-.nm { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+.nm { font-size: 22px; font-weight: 800; }
+.num { direction: ltr; display: inline-block; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
 
-/* --- الأزرار الذكية --- */
-.btn { border: 0; border-radius: 12px; padding: 14px 20px; font-weight: 700; font-size: 16px; background: var(--pr); color: var(--prt); cursor: pointer; transition: transform 0.15s, filter 0.2s, background 0.2s; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); display: flex; justify-content: center; align-items: center; gap: 8px;}
-.btn:active { transform: scale(0.96); }
-.btn.g { background: var(--bg); color: var(--tx); border: 1px solid var(--bd); box-shadow: none; }
-.btn.g:active { background: var(--bd); }
-.ic { width: 44px; height: 44px; border: 1px solid var(--bd); background: var(--card); color: var(--tx); border-radius: 12px; font-size: 20px; cursor: pointer; transition: transform 0.15s, background 0.2s; display: grid; place-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-.ic:active { transform: scale(0.9); background: var(--bg); }
+/* الأزرار */
+.btn { border: 0; border-radius: 12px; padding: 13px 16px; font-weight: 700; font-size: 15px; background: var(--pr); color: var(--prt); cursor: pointer; transition: transform 0.15s, background 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px; }
+.btn:active { transform: scale(0.97); }
+.btn.g { background: var(--bg); color: var(--tx); border: 1px solid var(--bd); }
+.btn.danger { background: var(--absb); color: var(--abs); border: 1px solid var(--abs); }
+.ic { width: 42px; height: 42px; border: 1px solid var(--bd); background: var(--card); color: var(--tx); border-radius: 12px; font-size: 20px; cursor: pointer; display: grid; place-items: center; flex-shrink: 0; }
+.ic:active { transform: scale(0.92); background: var(--bg); }
 
-/* --- المدخلات (Inputs) --- */
-input, textarea { width: 100%; padding: 14px 16px; border: 1.5px solid var(--bd); border-radius: 12px; background: var(--bg); color: var(--tx); font-size: 16px; transition: border-color 0.2s, box-shadow 0.2s; }
-input:focus, textarea:focus { border-color: var(--pr); background: var(--card); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
-label { display: block; font-weight: 700; margin-bottom: 16px; font-size: 14px; color: var(--tx); }
-label input, label textarea { margin-top: 8px; }
-.fld { display: flex; align-items: center; gap: 10px; margin-top: 8px; } .fld input { margin: 0; } .fld span { color: var(--mu); font-weight: 700; font-size: 16px;}
-.err { color: var(--abs); min-height: 1.4em; font-size: 14px; margin-bottom: 12px; font-weight: 500; }
+/* الحقول */
+input, textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--bd); border-radius: 12px; background: var(--bg); color: var(--tx); font-size: 16px; font-weight: 700; transition: border-color 0.2s; }
+input:focus, textarea:focus { border-color: var(--pr); background: var(--card); }
+label { display: block; font-weight: 700; margin-bottom: 14px; font-size: 14px; color: var(--tx); }
+label input, label textarea { margin-top: 6px; }
+.fld { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.fld input { margin: 0; text-align: left; }
+.fld span { color: var(--mu); font-weight: 700; font-size: 14px; min-width: 45px; text-align: center; background: var(--bg); padding: 12px 8px; border-radius: 10px; border: 1px solid var(--bd); }
+.err { color: var(--abs); min-height: 1.4em; font-size: 14px; margin-bottom: 10px; font-weight: 700; }
 
-/* --- شاشة الدخول --- */
-.auth { padding-top: 10vh; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.brand-icon { width: 72px; height: 72px; background: var(--pr); border-radius: 20px; display: grid; place-items: center; margin-bottom: 20px; box-shadow: 0 8px 24px rgba(37,99,235,0.3); transform: rotate(-5deg); }
-.brand-icon svg { width: 40px; height: 40px; fill: #fff; }
-.brand { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
-.auth .card { width: 100%; text-align: start; margin-top: 24px; padding: 24px; }
-.auth-tabs { display: flex; gap: 8px; background: var(--bg); padding: 6px; border-radius: 14px; margin-bottom: 20px; }
-.auth-tabs button { flex: 1; padding: 12px; border: none; border-radius: 10px; font-weight: 700; font-size: 15px; color: var(--mu); background: transparent; transition: 0.3s; }
-.auth-tabs button.on { background: var(--card); color: var(--pr); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+/* شاشة الدخول */
+.auth { padding-top: 8vh; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.brand-icon { width: 68px; height: 68px; background: var(--pr); border-radius: 20px; display: grid; place-items: center; margin-bottom: 16px; box-shadow: 0 8px 20px rgba(37,99,235,0.3); }
+.brand-icon svg { width: 36px; height: 36px; fill: #fff; }
+.brand { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
+.auth .card { width: 100%; text-align: start; margin-top: 20px; padding: 20px; }
+.auth-tabs { display: flex; gap: 6px; background: var(--bg); padding: 5px; border-radius: 12px; margin-bottom: 18px; }
+.auth-tabs button { flex: 1; padding: 10px; border: none; border-radius: 9px; font-weight: 700; font-size: 14px; color: var(--mu); background: transparent; cursor: pointer; }
+.auth-tabs button.on { background: var(--card); color: var(--pr); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
 
-/* --- شريط التنقل السفلي (Bottom Nav) --- */
-.b-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--bd); display: flex; padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 10; box-shadow: 0 -4px 20px rgba(0,0,0,0.04); transition: background 0.3s; }
-.b-nav button { flex: 1; padding: 12px 0 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; border: none; background: transparent; color: var(--mu); cursor: pointer; font-size: 11px; font-weight: 700; transition: color 0.2s, transform 0.1s; }
-.b-nav button svg { width: 24px; height: 24px; fill: currentColor; transition: transform 0.2s; }
+/* الشريط السفلي */
+.b-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--bd); display: flex; padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 20; box-shadow: 0 -4px 16px rgba(0,0,0,0.04); }
+.b-nav button { flex: 1; padding: 10px 0 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; border: none; background: transparent; color: var(--mu); cursor: pointer; font-size: 12px; font-weight: 700; }
+.b-nav button svg { width: 22px; height: 22px; fill: currentColor; transition: transform 0.2s; }
 .b-nav button.on { color: var(--pr); }
 .b-nav button.on svg { transform: translateY(-2px); }
-.b-nav button:active { transform: scale(0.92); }
 
-/* --- المحفظة والراتب --- */
-.top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.wal { background: linear-gradient(135deg, var(--pr), var(--pr-hov)); color: var(--prt); border-radius: 20px; padding: 24px; margin-bottom: 16px; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25); position: relative; overflow: hidden; }
-.wal::after { content: ''; position: absolute; top: -50%; right: -50%; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%; transform: rotate(30deg); }
-.wal .big { font-size: 42px; font-weight: 800; line-height: 1.1; margin-top: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-.wal .row { display: flex; justify-content: space-between; gap: 8px; margin-top: 20px; font-size: 14px; font-weight: 500; background: rgba(0,0,0,0.15); padding: 12px; border-radius: 12px; }
+/* بطاقة الرصيد */
+.top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.wal { background: linear-gradient(135deg, var(--pr), var(--pr-hov)); color: var(--prt); border-radius: 20px; padding: 20px; margin-bottom: 14px; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.22); }
+.wal .big { font-size: 36px; font-weight: 800; line-height: 1.2; margin-top: 6px; }
+.wal .row { display: flex; justify-content: space-between; gap: 8px; margin-top: 16px; font-size: 13px; font-weight: 700; background: rgba(0,0,0,0.18); padding: 10px 14px; border-radius: 12px; }
 
-/* --- التقويم والأيام --- */
-.mn { display: flex; justify-content: space-between; align-items: center; margin: 8px 0 16px; }
-.mn h2 { font-size: 20px; font-weight: 800; }
-.grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
-.wd { text-align: center; font-size: 13px; font-weight: 700; color: var(--mu); padding-bottom: 8px; }
-.day { aspect-ratio: 1; border-radius: 12px; border: 1.5px solid var(--bd); background: var(--bg); color: var(--tx); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; cursor: pointer; padding: 0; transition: transform 0.15s, background 0.25s, border-color 0.25s, box-shadow 0.2s; }
-.day b { font-size: 16px; font-weight: 700; z-index: 2; }
-.day em { font-style: normal; font-size: 13px; font-weight: 800; min-height: 18px; z-index: 2; }
-.day.fri b, .day.rest b { color: var(--mu); }
-.day.full { background: var(--fullb); border-color: var(--full); } .day.full em { color: var(--full); }
-.day.half { background: var(--halfb); border-color: var(--half); } .day.half em { color: var(--half); }
-.day.abs { background: var(--absb); border-color: var(--abs); } .day.abs em { color: var(--abs); }
-.day:active { transform: scale(0.9); }
-.day.today { outline: 2.5px solid var(--pr); outline-offset: 1px; border-color: transparent; }
-.day.pk { outline: 3px solid var(--pr); outline-offset: -3px; transform: scale(0.94); }
-.day u { position: absolute; top: 6px; inset-inline-end: 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--pr); }
+/* التقويم (تم إصلاح الخروج عن الإطار) */
+.mn { display: flex; justify-content: space-between; align-items: center; margin: 6px 0 14px; }
+.mn h2 { font-size: 19px; font-weight: 800; }
+.grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; width: 100%; }
+.wd { text-align: center; font-size: 12px; font-weight: 700; color: var(--mu); padding-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.day { aspect-ratio: 1; width: 100%; min-width: 0; border-radius: 10px; border: 1.5px solid var(--bd); background: var(--bg); color: var(--tx); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; cursor: pointer; padding: 2px; transition: transform 0.12s, background 0.2s; }
+.day b { font-size: 14px; font-weight: 800; line-height: 1.1; }
+.day em { font-style: normal; font-size: 11px; font-weight: 800; min-height: 14px; line-height: 1; margin-top: 2px; }
+.day.fri { border-style: dashed; }
+.day.full { background: var(--fullb); border-color: var(--full); border-style: solid; } .day.full em { color: var(--full); }
+.day.half { background: var(--halfb); border-color: var(--half); border-style: solid; } .day.half em { color: var(--half); }
+.day.abs { background: var(--absb); border-color: var(--abs); border-style: solid; } .day.abs em { color: var(--abs); }
+.day.rest { background: var(--restb); border-color: var(--rest); border-style: solid; } .day.rest em { color: var(--rest); }
+.day:active { transform: scale(0.92); }
+.day.today { outline: 2.5px solid var(--pr); outline-offset: 1px; }
+.day.pk { outline: 3px solid var(--pr); outline-offset: -2px; transform: scale(0.92); }
+.day u { position: absolute; top: 4px; inset-inline-end: 4px; width: 5px; height: 5px; border-radius: 50%; background: var(--pr); }
 
-/* --- القوائم والإيصالات --- */
-.lg { display: flex; gap: 12px; flex-wrap: wrap; font-size: 13px; font-weight: 700; margin: 16px 0; justify-content: center; }
-.lg span { display: flex; align-items: center; gap: 6px; background: var(--bg); padding: 4px 10px; border-radius: 20px; }
-.acts { display: flex; gap: 10px; margin-top: 12px; } .acts .btn { flex: 1; }
-.slip { border-top: 6px solid var(--pr); }
-.ln { display: flex; align-items: center; gap: 8px; padding: 8px 0; font-size: 15px; }
-.ln b { font-weight: 800; font-size: 16px; }
-.lead { flex: 1; border-bottom: 2px dotted var(--mu); opacity: 0.4; }
-.dot { width: 12px; height: 12px; border-radius: 4px; flex: none; background: var(--mu); }
+/* الكشف والتفاصيل */
+.lg { display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px; font-weight: 700; margin: 14px 0 6px; justify-content: center; }
+.lg span { display: flex; align-items: center; gap: 5px; background: var(--bg); padding: 4px 10px; border-radius: 20px; }
+.acts { display: flex; gap: 8px; margin-top: 10px; } .acts .btn { flex: 1; }
+.slip { border-top: 5px solid var(--pr); }
+.ln { display: flex; align-items: center; gap: 8px; padding: 8px 0; font-size: 14px; font-weight: 500; }
+.ln b { font-weight: 800; font-size: 15px; flex-shrink: 0; }
+.lead { flex: 1; border-bottom: 1.5px dotted var(--bd); }
+.dot { width: 10px; height: 10px; border-radius: 3px; flex: none; background: var(--mu); }
 .dot.full { background: var(--full); } .dot.half { background: var(--half); } .dot.abs { background: var(--abs); } .dot.rest { background: var(--rest); }
-.tot { font-size: 20px; font-weight: 800; border-top: 2px dashed var(--bd); margin-top: 8px; padding-top: 16px; }
+.tot { font-size: 17px; font-weight: 800; border-top: 2px dashed var(--bd); margin-top: 6px; padding-top: 12px; }
 .neg { color: var(--abs); }
 
-/* --- السحوبات والسنة --- */
-.wl { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px; background: var(--bg); border-radius: 12px; margin-bottom: 10px; }
-.wl b { font-size: 18px; font-weight: 800; color: var(--tx); }
-.wl button { border: 0; background: var(--absb); color: var(--abs); width: 36px; height: 36px; border-radius: 10px; font-size: 16px; cursor: pointer; transition: 0.2s; }
-.wl button:active { transform: scale(0.85); }
-.yr { display: grid; grid-template-columns: 1fr auto; width: 100%; text-align: start; background: var(--bg); border: 0; border-radius: 12px; padding: 16px; margin-bottom: 10px; color: var(--tx); cursor: pointer; font-size: 16px; transition: transform 0.1s; }
-.yr:active { transform: scale(0.97); }
-.yr span { grid-column: 1; margin-top: 4px; } .yr strong { grid-row: 1/3; grid-column: 2; align-self: center; font-size: 18px; font-weight: 800; }
+/* السحوبات والسنة */
+.wl { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; background: var(--bg); border-radius: 12px; margin-bottom: 8px; }
+.wl b { font-size: 16px; font-weight: 800; }
+.wl button { border: 0; background: var(--absb); color: var(--abs); width: 34px; height: 34px; border-radius: 9px; font-size: 15px; font-weight: 800; cursor: pointer; }
+.yr { display: flex; justify-content: space-between; align-items: center; width: 100%; text-align: start; background: var(--bg); border: 1px solid var(--bd); border-radius: 12px; padding: 14px; margin-bottom: 8px; color: var(--tx); cursor: pointer; }
+.yr strong { font-size: 16px; font-weight: 800; color: var(--pr); }
 
-/* --- النوافذ المنبثقة (Bottom Sheet Modal) --- */
-.ov { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: flex; align-items: flex-end; justify-content: center; z-index: 50; transition: opacity 0.3s; }
-.ov[hidden] { display: none; opacity: 0; }
-.sheet { background: var(--card); color: var(--tx); width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; border-radius: 24px 24px 0 0; padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -10px 40px rgba(0,0,0,0.1); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
-.ov[hidden] .sheet { transform: translateY(100%); }
-.sheet h3 { margin-bottom: 16px; font-size: 22px; font-weight: 800; text-align: center; }
-.opt { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px; border: 2px solid var(--bd); border-radius: 14px; background: var(--bg); font-size: 16px; color: var(--tx); cursor: pointer; margin-bottom: 10px; text-align: start; transition: 0.2s; }
-.opt.sel { border-color: var(--pr); background: var(--card); box-shadow: 0 4px 12px rgba(37,99,235,0.1); transform: translateY(-2px); }
-.opt b { font-size: 16px; }
-.stamp { width: 44px; height: 44px; border: 2.5px solid var(--mu); border-radius: 12px; display: grid; place-items: center; font-size: 20px; font-weight: 800; color: var(--mu); flex: none; transform: rotate(-5deg); }
+/* النافذة المنبثقة */
+.ov { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(3px); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
+.ov[hidden] { display: none; }
+.sheet { background: var(--card); color: var(--tx); width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; border-radius: 22px 22px 0 0; padding: 20px 18px calc(22px + env(safe-area-inset-bottom, 0px)); }
+.sheet h3 { margin-bottom: 14px; font-size: 20px; font-weight: 800; text-align: center; }
+.opt { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px; border: 2px solid var(--bd); border-radius: 14px; background: var(--bg); font-size: 15px; color: var(--tx); cursor: pointer; margin-bottom: 8px; text-align: start; }
+.opt.sel { border-color: var(--pr); background: var(--card); }
+.stamp { width: 40px; height: 40px; border: 2px solid var(--mu); border-radius: 10px; display: grid; place-items: center; font-size: 18px; font-weight: 800; color: var(--mu); flex: none; }
 .stamp.full { color: var(--full); border-color: var(--full); background: var(--fullb); }
 .stamp.half { color: var(--half); border-color: var(--half); background: var(--halfb); }
 .stamp.abs { color: var(--abs); border-color: var(--abs); background: var(--absb); }
 .stamp.rest { color: var(--rest); border-color: var(--rest); background: var(--restb); }
 
-/* --- الإشعارات (Toasts) --- */
-.toast { position: fixed; inset-inline: 16px; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); max-width: 400px; margin: 0 auto; background: var(--tx); color: var(--bg); border-radius: 14px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; z-index: 60; font-weight: 700; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: popUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.toast { position: fixed; inset-inline: 16px; bottom: calc(78px + env(safe-area-inset-bottom, 0px)); max-width: 400px; margin: 0 auto; background: var(--tx); color: var(--bg); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; z-index: 60; font-weight: 700; font-size: 14px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
 .toast[hidden] { display: none; }
-.toast button { background: var(--bg); border: 0; color: var(--tx); font-weight: 800; border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.toast button { background: var(--pr); border: 0; color: #fff; font-weight: 700; border-radius: 8px; padding: 5px 10px; cursor: pointer; }
 
-/* --- الحركات (Animations) --- */
-@keyframes popUp { from { opacity: 0; transform: translateY(20px) scale(0.9); } to { opacity: 1; transform: none; } }
-@keyframes fadeView { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-@keyframes popDay { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: none; } }
-.anim .view-content { animation: fadeView 0.3s ease both; }
-.anim .grid .day { animation: popDay 0.4s cubic-bezier(0.2,0.8,0.2,1) both; animation-delay: calc(var(--i) * 15ms); }
-
-/* إخفاء عناصر للطباعة */
-@media print { .b-nav, .top, .acts, .mn button, .lg, .toast { display: none !important; } body { background: #fff; color: #000; } .card, .wal { box-shadow: none; border: 1px solid #000; background: #fff; color: #000; } }
-
-/* الأيقونات SVG */
-.svg-icon { width: 24px; height: 24px; fill: currentColor; }
+.pv-box { background: var(--bg); border: 1px solid var(--bd); border-radius: 12px; padding: 12px; margin-bottom: 16px; font-size: 14px; line-height: 1.8; }
 </style>
 </head>
 <body>
@@ -171,29 +152,32 @@ label input, label textarea { margin-top: 8px; }
 <div id="tt" class="toast" hidden></div>
 
 <script>
-// ==========================================
-// 1. إعدادات الـ API (تم إضافة الرابط الجديد)
-// ==========================================
 const API_URL = 'https://wage-tracker-api-2cex.onrender.com';
 
 const $ = s => document.querySelector(s), pad = n => String(n).padStart(2, '0');
 const MN = ['جانفي','فيفري','مارس','أفريل','ماي','جوان','جويلية','أوت','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
 const WD = ['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
-const DEF = { salary: 47000, rest: 1160, base: 26, restN: 4, inc: true, hours: 10, half: 50, ot: 50, fri: 100 };
-const IC = { full: '✓', half: '½', abs: '✕', rest: '☾' };
-const LB = (t, f) => t === 'full' ? (f ? 'عمل يوم الجمعة' : 'عمل كامل') : t === 'half' ? 'توقف: لا توجد مواد أولية' : t === 'abs' ? 'غياب' : 'راحة مدفوعة';
 
-// تنسيق المبالغ المالية بطريقة جزائرية احترافية (12 000 دج)
-const money = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' دج';
+// الإعدادات الافتراضية (الساعة الإضافية = 250 دج)
+const DEF = { salary: 47000, rest: 1160, base: 26, restN: 4, inc: true, hours: 10, half: 50, ot: 250, fri: 100 };
+const IC = { full: '✓', half: '½', abs: '✕', rest: '☾' };
+const LB = (t, f) => t === 'full' ? (f ? 'عمل يوم الجمعة' : 'عمل كامل') : t === 'half' ? 'توقف (نصف يوم)' : t === 'abs' ? 'غياب' : 'راحة مدفوعة';
+
+// تنسيق الأرقام بشكل يمنع انعكاسها في العربية
+const fmtNum = n => {
+  const v = Math.round(n);
+  return (v < 0 ? '-' : '') + Math.abs(v).toLocaleString('en-US');
+};
+const money = n => fmtNum(n) + ' دج';
 const ymd = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
 const nw = () => new Date();
 const dow = k => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d).getDay(); };
 
-// أيقونات الـ SVG السفلية
+// أيقونات الشريط السفلي (تم إصلاح مفتاح year)
 const icons = {
   cal: `<svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>`,
   wd: `<svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>`,
-  yr: `<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>`,
+  year: `<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>`,
   set: `<svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>`
 };
 
@@ -202,13 +186,12 @@ const rd = k => { try { const v = localStorage.getItem(k); if (v !== null) retur
 const wr = (k, v) => { mem[k] = v; try { localStorage.setItem(k, v) } catch(e){} };
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-const S = { me: null, d: null, y: nw().getFullYear(), m: nw().getMonth(), tab: 'cal', mode: 'login', sh: null, undo: null, rs: 0, multi: false, pick: new Set(), anim: true, bal: null, boot: 0 };
+const S = { me: null, d: null, y: nw().getFullYear(), m: nw().getMonth(), tab: 'cal', mode: 'login', sh: null, multi: false, pick: new Set(), bal: null, boot: 0, confirmReset: false };
 let tok = rd('wt:tok') || '', tmr, t2;
 
-// الاتصال بالخادم
 async function api(m, p, b) {
   const r = await fetch(API_URL + '/api' + p, {
-    method: m, 
+    method: m,
     headers: { 'Content-Type': 'application/json', ...(tok ? { Authorization: 'Bearer ' + tok } : {}) },
     body: b ? JSON.stringify(b) : undefined
   });
@@ -217,44 +200,58 @@ async function api(m, p, b) {
   return d;
 }
 
-const sync = (m, p, b) => { api(m, p, b).catch(e => toast('لم يُحفظ على الخادم: ' + e.message)) };
+const sync = (m, p, b) => { api(m, p, b).catch(e => toast('خطأ في الحفظ: ' + e.message)) };
 
 function fromServer(d) {
   S.me = d.user;
-  S.d = { set: { ...DEF, ...d.settings }, days: {}, w: d.withdrawals.map(x => ({ id: x.id, date: x.date, amount: x.amount, n: x.note || '' })) };
-  d.days.forEach(x => { S.d.days[x.date] = { s: x.status, x: x.extraHours || 0, n: x.note || '' } });
+  S.d = {
+    set: { ...DEF, ...d.settings },
+    days: {},
+    w: (d.withdrawals || []).map(x => ({ id: x.id, date: x.date, amount: x.amount, n: x.note || '' }))
+  };
+  // ترقية تلقائية لسعر الساعة الإضافية إلى 250 دج إذا كانت على القيمة القديمة 50
+  if (S.d.set.ot === 50 && !rd('wt:ot250')) {
+    S.d.set.ot = 250;
+    wr('wt:ot250', '1');
+    sync('PUT', '/data/settings', S.d.set);
+  }
+  (d.days || []).forEach(x => { S.d.days[x.date] = { s: x.status, x: x.extraHours || 0, n: x.note || '' } });
 }
 
-// حساب الرواتب
 function rt() {
-  const s = S.d.set, W = (s.inc ? s.salary - s.rest * s.restN : s.salary) / s.base;
-  return { W, Hr: W / s.hours };
+  const s = S.d.set, W = (s.inc ? s.salary - s.rest * s.restN : s.salary) / (s.base || 26);
+  return { W, Hr: W / (s.hours || 10), Ot: s.ot || 250 };
 }
+
+// حساب الراتب بدون أي أرقام وهمية (يبدأ من 0 دج ولا يحسب إلا ما تم تسجيله فعلياً)
 function pay(p) {
-  const s = S.d.set, { W, Hr } = rt(), td = ymd(nw()), [y, m] = p.split('-').map(Number), n = new Date(y, m, 0).getDate();
-  const r = { full: 0, half: 0, abs: 0, fw: 0, xh: 0, rest: 0, W, Hr };
+  const s = S.d.set, { W, Hr, Ot } = rt(), [y, m] = p.split('-').map(Number), n = new Date(y, m, 0).getDate();
+  const r = { full: 0, half: 0, abs: 0, fw: 0, xh: 0, rest: 0, W, Hr, Ot };
   for (let d = 1; d <= n; d++) {
     const k = p + '-' + pad(d), e = S.d.days[k], f = dow(k) === 5;
-    if (f && k <= td) r.rest++;
     if (!e) continue;
     if (e.s === 'full') { f ? r.fw++ : r.full++; r.xh += e.x || 0; }
-    else if (e.s === 'half' && !f) r.half++;
-    else if (e.s === 'abs' && !f) r.abs++;
+    else if (e.s === 'half') { r.half++; r.xh += e.x || 0; }
+    else if (e.s === 'rest') { r.rest++; }
+    else if (e.s === 'abs') { r.abs++; }
   }
-  r.pFull = r.full * W; r.pHalf = r.half * W * s.half / 100; r.pFw = r.fw * W * (1 + s.fri / 100);
-  r.pX = r.xh * Hr * (1 + s.ot / 100); r.pRest = r.rest * s.rest;
+  r.pFull = r.full * W;
+  r.pHalf = r.half * W * (s.half / 100);
+  r.pFw = r.fw * W * (1 + s.fri / 100);
+  r.pX = r.xh * Ot; // كل ساعة إضافية تضرب مباشرة في سعر الساعة الإضافية (250 دج)
+  r.pRest = r.rest * s.rest;
   r.gross = r.pFull + r.pHalf + r.pFw + r.pX + r.pRest;
-  r.wd = S.d.w.filter(x => x.date.startsWith(p)).reduce((a, x) => a + x.amount, 0); r.net = r.gross - r.wd;
+  r.wd = S.d.w.filter(x => x.date.startsWith(p)).reduce((a, x) => a + x.amount, 0);
+  r.net = r.gross - r.wd;
   return r;
 }
 
-// واجهة الدخول
 function authView() {
   const reg = S.mode === 'reg';
-  return `<div class="wrap auth ${S.anim ? 'anim' : ''}">
-    <div class="brand-icon"><svg viewBox="0 0 24 24"><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M11,19.93c-3.95-0.49-7-3.85-7-7.93c0-0.62,0.08-1.22,0.21-1.79 L9,15v1c0,1.1,0.9,2,2,2V19.93z M17.9,17.39c-0.26-0.81-1-1.39-1.9-1.39h-1v-3c0-0.55-0.45-1-1-1H8v-2h2c0.55,0,1-0.45,1-1V7h2 c1.1,0,2-0.9,2-2v0.41c3.34,1.36,5.82,4.4,6.72,8.12C20.4,14.61,19.34,16.27,17.9,17.39z"/></svg></div>
-    <h1 class="brand">دفتر الأيام</h1>
-    <p class="mu">سجّل وتتبع أيام عملك وراتبك بسهولة.</p>
+  return `<div class="wrap auth">
+    <div class="brand-icon"><svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg></div>
+    <h1 class="brand">دفتر أيام العمل</h1>
+    <p class="mu">حساب دقيق لليوميات والساعات الإضافية والسحوبات</p>
     <div class="card">
       <div class="auth-tabs"><button data-a="mode" data-v="login" class="${reg ? '' : 'on'}">تسجيل الدخول</button><button data-a="mode" data-v="reg" class="${reg ? 'on' : ''}">حساب جديد</button></div>
       <form id="af">
@@ -268,150 +265,215 @@ function authView() {
   </div>`;
 }
 
-// أشرطة القوائم والملاحة
 const mnav = (t, a) => `<div class="mn"><button class="ic" data-a="${a}" data-v="-1">›</button><h2>${t}</h2><button class="ic" data-a="${a}" data-v="1">‹</button></div>`;
-const ln = (c, l, v, x) => `<div class="ln ${x || ''}"><i class="dot ${c}"></i><span>${l}</span><i class="lead"></i><b>${v}</b></div>`;
+const ln = (c, l, v, x) => `<div class="ln ${x || ''}">${c !== 'none' ? `<i class="dot ${c}"></i>` : ''}<span>${l}</span><i class="lead"></i><b>${v}</b></div>`;
 
 function walView(c) {
   const cur = S.y === nw().getFullYear() && S.m === nw().getMonth();
-  return `<section class="wal"><div class="sm">${cur ? 'الرصيد المتاح الآن' : 'رصيد ' + MN[S.m] + ' ' + S.y}</div><div class="big" id="bal" data-v="${Math.round(c.net)}">${money(c.net)}</div><div class="row"><span>المستحق: ${money(c.gross)}</span><span>السحوبات: ${money(c.wd)}</span></div></section>`;
+  return `<section class="wal">
+    <div class="sm">${cur ? 'الرصيد الصافي المتاح' : 'رصيد ' + MN[S.m] + ' ' + S.y}</div>
+    <div class="big" id="bal" data-v="${Math.round(c.net)}">${money(c.net)}</div>
+    <div class="row"><span>المستحق: ${money(c.gross)}</span><span>السحوبات: ${money(c.wd)}</span></div>
+  </section>`;
 }
 
 const bnav = () => `<nav class="b-nav">${[['cal','التقويم'],['wd','السحوبات'],['year','الإحصاءات'],['set','الإعدادات']].map(([k,l])=>`<button data-a="tab" data-v="${k}" class="${S.tab===k?'on':''}">${icons[k]}<span>${l}</span></button>`).join('')}</nav>`;
 
-// عرض التطبيق الأساسي
 function mainView() {
-  return `<div class="wrap ${S.anim ? 'anim' : ''}"><header class="top"><div><div class="sm mu">أهلاً بك،</div><div class="nm">${esc(S.me.name)}</div></div><button class="ic" data-a="theme">◐</button></header><div class="view-content">${{cal:calView, wd:wdView, year:yearView, set:setView}[S.tab]()}</div>${bnav()}</div>`;
+  return `<div class="wrap"><header class="top"><div><div class="sm mu">مرحباً بك،</div><div class="nm">${esc(S.me.name)}</div></div><button class="ic" data-a="theme" aria-label="المظهر">◐</button></header><div>${{cal:calView, wd:wdView, year:yearView, set:setView}[S.tab]()}</div>${bnav()}</div>`;
 }
 
-// 1. التقويم
 function calView() {
-  const s = S.d.set, p = S.y + '-' + pad(S.m + 1), c = pay(p), first = (new Date(S.y, S.m, 1).getDay() + 1) % 7, n = new Date(S.y, S.m + 1, 0).getDate(), td = ymd(nw());
+  const p = S.y + '-' + pad(S.m + 1), c = pay(p), first = (new Date(S.y, S.m, 1).getDay() + 1) % 7, n = new Date(S.y, S.m + 1, 0).getDate(), td = ymd(nw());
   let g = WD.map(w => `<div class="wd">${w.slice(0, 3)}</div>`).join('') + '<i></i>'.repeat(first);
   for (let d = 1; d <= n; d++) {
-    const k = p + '-' + pad(d), e = S.d.days[k], f = (first + d - 1) % 7 === 6, st = e ? e.s : (f ? 'rest' : '');
-    g += `<button class="day ${st} ${k === td ? 'today' : ''} ${f ? 'fri' : ''} ${S.pick.has(k) ? 'pk' : ''}" style="--i:${d}" data-a="day" data-v="${k}"><b>${d}</b><em>${st ? IC[st] : ''}${e && e.x ? '+' + e.x : ''}</em>${e && e.n ? '<u></u>' : ''}</button>`;
+    const k = p + '-' + pad(d), e = S.d.days[k], f = (first + d - 1) % 7 === 6, st = e ? e.s : '';
+    g += `<button class="day ${st} ${k === td ? 'today' : ''} ${f ? 'fri' : ''} ${S.pick.has(k) ? 'pk' : ''}" data-a="day" data-v="${k}"><b>${d}</b><em>${st ? IC[st] : (f ? 'ج' : '')}${e && e.x ? '+' + e.x : ''}</em>${e && e.n ? '<u></u>' : ''}</button>`;
   }
-  const rows = [ln('full','عمل كامل × '+c.full,money(c.pFull)), ln('half','توقف بنصف الأجر × '+c.half,money(c.pHalf))];
-  if (c.fw) rows.push(ln('full','عمل الجمعة × '+c.fw,money(c.pFw)));
-  rows.push(ln('','ساعات إضافية × '+c.xh,money(c.pX)), ln('rest','راحة مدفوعة × '+c.rest,money(c.pRest)), ln('abs','غياب بدون أجر × '+c.abs,money(0)));
+  const rows = [
+    ln('full', 'عمل كامل × ' + c.full, money(c.pFull)),
+    ln('half', 'توقف بنصف الأجر × ' + c.half, money(c.pHalf))
+  ];
+  if (c.fw) rows.push(ln('full', 'عمل يوم الجمعة × ' + c.fw, money(c.pFw)));
+  rows.push(
+    ln('', `ساعات إضافية (${c.xh} س × ${fmtNum(c.Ot)})`, money(c.pX)),
+    ln('rest', 'راحة مدفوعة (جمعة) × ' + c.rest, money(c.pRest)),
+    ln('abs', 'غياب بدون أجر × ' + c.abs, money(0))
+  );
 
-  return walView(c) + mnav(MN[S.m] + ' ' + S.y, 'nav') + 
-    `<section class="card"><div class="grid">${g}</div><div class="lg"><span><i class="dot full"></i>عمل</span><span><i class="dot half"></i>توقف</span><span><i class="dot abs"></i>غياب</span><span><i class="dot rest"></i>راحة</span></div>
-    ${S.multi ? `<div class="acts" style="background:var(--halfb); padding:10px; border-radius:12px;"><button class="btn" data-a="apply" data-v="full" style="background:var(--full)">عمل</button><button class="btn" data-a="apply" data-v="half" style="background:var(--half);color:#fff">توقف</button><button class="btn" data-a="apply" data-v="abs" style="background:var(--abs)">غياب</button><button class="btn g" data-a="cancel">إلغاء</button></div>` : `<div class="acts"><button class="btn g" data-a="today">اليوم</button><button class="btn g" data-a="multi">تحديد متعدد</button></div><div class="acts"><button class="btn wide" data-a="fill" style="background:var(--tx)">تعبئة سريعة للأيام الفارغة</button></div>`}</section>
-    <section class="card slip">${rows.join('')}${ln('','المستحق',money(c.gross),'tot')}${ln('abs','السحوبات − ',money(c.wd))}${ln('','الرصيد',money(c.net),'tot '+(c.net < 0 ? 'neg' : ''))}</section>`;
+  return walView(c) + mnav(MN[S.m] + ' ' + S.y, 'nav') +
+    `<section class="card"><div class="grid">${g}</div>
+      <div class="lg"><span><i class="dot full"></i>عمل</span><span><i class="dot half"></i>توقف</span><span><i class="dot rest"></i>راحة</span><span><i class="dot abs"></i>غياب</span></div>
+      ${S.multi ? `<div class="acts" style="background:var(--bg); padding:8px; border-radius:12px;"><button class="btn" data-a="apply" data-v="full" style="background:var(--full)">عمل</button><button class="btn" data-a="apply" data-v="half" style="background:var(--half)">توقف</button><button class="btn" data-a="apply" data-v="rest" style="background:var(--rest)">راحة</button><button class="btn g" data-a="cancel">إلغاء</button></div>` : `<div class="acts"><button class="btn g" data-a="today">اليوم</button><button class="btn g" data-a="multi">تحديد عدة أيام</button></div><div class="acts"><button class="btn wide" data-a="fill" style="background:var(--tx);color:var(--bg)">تعبئة سريعة للأيام الفارغة</button></div>`}
+    </section>
+    <section class="card slip">
+      ${rows.join('')}
+      ${ln('none', 'إجمالي المستحق', money(c.gross), 'tot')}
+      ${ln('abs', 'السحوبات المسجلة −', money(c.wd))}
+      ${ln('none', 'الرصيد الصافي', money(c.net), 'tot ' + (c.net < 0 ? 'neg' : ''))}
+    </section>`;
 }
 
-// 2. السحوبات
 function wdView() {
   const p = S.y + '-' + pad(S.m + 1), c = pay(p), list = S.d.w.filter(x => x.date.startsWith(p)).sort((a,b) => b.date.localeCompare(a.date));
-  return walView(c) + mnav(MN[S.m] + ' ' + S.y, 'nav') + 
-    `<section class="card"><label>المبلغ (دج)<input id="wa" type="number" dir="ltr" placeholder="مثال: 5000"></label><label>التاريخ<input id="wdt" type="date" value="${ymd(nw())}" dir="ltr"></label><label>ملاحظة<input id="wn" placeholder="مثال: تسبيق"></label><p id="werr" class="err"></p><button class="btn wide" data-a="addw">إضافة سحب</button></section>
-    <section class="card"><h3>سحوبات الشهر</h3><div style="margin-top:12px">${list.length ? list.map(x => `<div class="wl"><div><b>${money(x.amount)}</b><div class="sm mu">${x.date.slice(8)} ${MN[+x.date.slice(5,7)-1]}${x.n ? ' · ' + esc(x.n) : ''}</div></div><button data-a="delw" data-v="${esc(x.id)}">✕</button></div>`).join('') + ln('abs','مجموع السحوبات',money(c.wd),'tot') : '<p class="mu">لا يوجد سحوبات.</p>'}</div></section>`;
+  return walView(c) + mnav(MN[S.m] + ' ' + S.y, 'nav') +
+    `<section class="card"><label>مبلغ السحب (دج)<input id="wa" type="number" dir="ltr" placeholder="مثال: 5000"></label><label>التاريخ<input id="wdt" type="date" value="${ymd(nw())}" dir="ltr"></label><label>ملاحظة (اختياري)<input id="wn" placeholder="مثال: تسبيق مصروف"></label><p id="werr" class="err"></p><button class="btn wide" data-a="addw">إضافة السحب</button></section>
+    <section class="card"><h3>سحوبات هذا الشهر</h3><div style="margin-top:12px">${list.length ? list.map(x => `<div class="wl"><div><b>${money(x.amount)}</b><div class="sm mu">${x.date.slice(8)} ${MN[+x.date.slice(5,7)-1]}${x.n ? ' · ' + esc(x.n) : ''}</div></div><button data-a="delw" data-v="${esc(x.id)}">✕</button></div>`).join('') + ln('none','مجموع السحوبات',money(c.wd),'tot') : '<p class="mu">لا توجد سحوبات مسجلة في هذا الشهر.</p>'}</div></section>`;
 }
 
-// 3. الإحصاءات
 function yearView() {
   let tg = 0, tw = 0; const rows = [], v = [];
   for (let m = 0; m < 12; m++) {
     const c = pay(S.y + '-' + pad(m + 1)); v.push(c.gross);
-    if (c.full + c.half + c.abs + c.fw + c.rest + c.wd) {
+    if (c.full + c.half + c.abs + c.fw + c.rest + c.wd > 0) {
       tg += c.gross; tw += c.wd;
-      rows.push(`<button class="yr" data-a="goto" data-v="${m}"><b>${MN[m]}</b><span class="sm mu">${c.full} عمل · ${c.half} توقف · ${c.abs} غياب</span><strong>${money(c.gross)}</strong></button>`);
+      rows.push(`<button class="yr" data-a="goto" data-v="${m}"><div><b>${MN[m]}</b><div class="sm mu">${c.full + c.fw} عمل · ${c.half} توقف · ${c.rest} راحة · ${c.xh} س إضافية</div></div><strong>${money(c.net)}</strong></button>`);
     }
   }
-  const mx = Math.max(1, ...v), cm = nw().getMonth(), bars = v.map((x, i) => { const h = Math.round(x / mx * 80), X = 312 - (i + 1) * 26; return `<rect x="${X+3}" y="${90-h}" width="20" height="${h}" rx="4" fill="var(--pr)" opacity="${i===cm&&S.y===nw().getFullYear()?1:0.4}"/><text x="${X+13}" y="105" font-size="10" text-anchor="middle" font-weight="700" fill="var(--mu)">${i+1}</text>`; }).join('');
-  return mnav(S.y, 'ny') + `<section class="card"><svg viewBox="0 0 312 110" width="100%">${bars}</svg>` + (rows.length ? rows.join('') + ln('','مجموع المستحق',money(tg),'tot') + ln('abs','مجموع السحوبات',money(tw)) + ln('','الصافي',money(tg-tw),'tot') : '<p class="mu">لا توجد بيانات.</p>') + '</section>';
+  const mx = Math.max(1, ...v), cm = nw().getMonth(), bars = v.map((x, i) => { const h = Math.round(x / mx * 75), X = 312 - (i + 1) * 26; return `<rect x="${X+3}" y="${85-h}" width="20" height="${h}" rx="4" fill="var(--pr)" opacity="${i===cm&&S.y===nw().getFullYear()?1:0.35}"/><text x="${X+13}" y="102" font-size="10" text-anchor="middle" font-weight="700" fill="var(--mu)">${i+1}</text>`; }).join('');
+  return mnav(S.y, 'ny') + `<section class="card"><svg viewBox="0 0 312 108" width="100%" style="margin-bottom:12px">${bars}</svg>` + (rows.length ? rows.join('') + ln('none','إجمالي المستحق السنوي',money(tg),'tot') + ln('abs','إجمالي السحوبات',money(tw)) + ln('none','الصافي السنوي',money(tg-tw),'tot') : '<p class="mu" style="text-align:center;padding:12px 0">لا توجد أيام مسجلة في هذه السنة بعد.</p>') + '</section>';
 }
 
-// 4. الإعدادات
+function pvText() {
+  const s = S.d.set, { W, Ot } = rt();
+  return `أجر يوم العمل الكامل: <b>${money(W)}</b><br>أجر يوم التوقف (${s.half}%): <b>${money(W * s.half / 100)}</b><br>سعر الساعة الإضافية: <b>${money(Ot)}</b><br>أجر جمعة الراحة: <b>${money(s.rest)}</b>`;
+}
+
 function setView() {
   const s = S.d.set, f = (k, l, u) => `<label>${l}<div class="fld"><input data-k="${k}" type="number" dir="ltr" value="${s[k]}"><span>${u}</span></div></label>`;
-  return `<section class="card"><h3>إعدادات الراتب</h3><div style="margin-top:16px">${f('salary','الراتب الشهري الكلي','دج')}${f('rest','أجر يوم الراحة (الجمعة)','دج')}${f('base','أيام العمل في الشهر الكامل','يوم')}${f('hours','ساعات العمل في اليوم','ساعة')}${f('half','أجر يوم التوقف','%')}${f('ot','زيادة الساعة الإضافية','%')}</div></section>
-    <section class="card"><h3>الحساب</h3><p style="margin-top:12px; font-weight:700">${esc(S.me.name)}</p><p class="mu" dir="ltr" style="text-align:end">${esc(S.me.phone)}</p><div class="acts"><button class="btn wide g" data-a="out" style="color:var(--abs); border-color:var(--absb)">تسجيل الخروج</button></div></section>`;
+  return `<section class="card">
+      <h3 style="margin-bottom:12px">إعدادات الأجر والحساب</h3>
+      <div class="pv-box" id="pv">${pvText()}</div>
+      ${f('ot', 'سعر الساعة الإضافية الواحدة', 'دج')}
+      ${f('salary', 'الراتب الشهري الكلي', 'دج')}
+      ${f('rest', 'أجر يوم الراحة (الجمعة)', 'دج')}
+      ${f('base', 'عدد أيام العمل في الشهر', 'يوم')}
+      ${f('hours', 'ساعات العمل في اليوم', 'ساعة')}
+      ${f('half', 'نسبة أجر يوم التوقف', '%')}
+    </section>
+    <section class="card">
+      <h3 style="margin-bottom:8px">إدارة الحساب</h3>
+      <p style="font-weight:700">${esc(S.me.name)} — <span class="num mu">${esc(S.me.phone)}</span></p>
+      <div class="acts" style="margin-top:14px">
+        <button class="btn danger wide" data-a="reset">${S.confirmReset ? 'اضغط مجدداً لتأكيد المسح النهائي!' : 'تصفير الحساب ومسح كل البيانات'}</button>
+      </div>
+      <div class="acts">
+        <button class="btn g wide" data-a="out">تسجيل الخروج</button>
+      </div>
+    </section>`;
 }
 
-// عرض واجهة اليوم
 function openDay(k) {
-  const e = S.d.days[k] || {}, [y, m, d] = k.split('-').map(Number), f = dow(k) === 5, s = S.d.set, { W, Hr } = rt(), amt = { full: f ? W * (1 + s.fri / 100) : W, half: W * s.half / 100, abs: 0, rest: s.rest }; S.sh = { k, s: e.s || '' };
-  $('#sheet').innerHTML = `<h3>${WD[(dow(k)+1)%7]} ${d} ${MN[m-1]}</h3>` + (f ? ['rest','full'] : ['full','half','abs']).map(t => `<button class="opt ${S.sh.s === t ? 'sel' : ''}" data-a="pick" data-v="${t}"><span class="stamp ${t}">${IC[t]}</span><span><b>${LB(t, f)}</b><br><span class="sm mu">${t === 'abs' ? 'بدون أجر' : '+' + money(amt[t])}</span></span></button>`).join('') + `<label style="margin-top:16px">ساعات إضافية<input id="xh" type="number" step="0.5" dir="ltr" value="${e.x || ''}" placeholder="0"></label><label>ملاحظة<textarea id="note" rows="2" placeholder="أضف ملاحظة...">${esc(e.n || '')}</textarea></label><p id="serr" class="err"></p><div class="acts"><button class="btn wide" data-a="save">حفظ اليوم</button>${e.s ? '<button class="btn g" data-a="clr" style="color:var(--abs)">مسح</button>' : ''}</div>`;
+  const e = S.d.days[k] || {}, [y, m, d] = k.split('-').map(Number), f = dow(k) === 5, s = S.d.set, { W, Ot } = rt();
+  const amt = { full: f ? W * (1 + s.fri / 100) : W, half: W * s.half / 100, abs: 0, rest: s.rest };
+  S.sh = { k, s: e.s || (f ? 'rest' : 'full') };
+  const opts = f ? ['rest', 'full', 'abs'] : ['full', 'half', 'rest', 'abs'];
+  $('#sheet').innerHTML = `<h3>${WD[(dow(k)+1)%7]} ${d} ${MN[m-1]}</h3>` +
+    opts.map(t => `<button class="opt ${S.sh.s === t ? 'sel' : ''}" data-a="pick" data-v="${t}"><span class="stamp ${t}">${IC[t]}</span><span><b>${LB(t, f)}</b><br><span class="sm mu">${t === 'abs' ? '0 دج' : '+' + money(amt[t])}</span></span></button>`).join('') +
+    `<label style="margin-top:14px">ساعات إضافية (سعر الساعة: ${money(Ot)})<input id="xh" type="number" step="0.5" min="0" max="15" dir="ltr" value="${e.x || ''}" placeholder="0"></label>
+    <label>ملاحظة<textarea id="note" rows="2" placeholder="أضف ملاحظة إن وجدت...">${esc(e.n || '')}</textarea></label>
+    <p id="serr" class="err"></p>
+    <div class="acts"><button class="btn wide" data-a="save">حفظ اليوم</button>${e.s ? '<button class="btn danger" data-a="clr">حذف</button>' : ''}</div>`;
   $('#ov').hidden = false;
 }
 
 const closeSheet = () => { $('#ov').hidden = true; };
-function toast(msg) { const t = $('#tt'); t.innerHTML = `<span>${msg}</span><button data-a="close_toast">حسناً</button>`; t.hidden = false; clearTimeout(tmr); tmr = setTimeout(() => { t.hidden = true }, 5000); }
-function render() { $('#app').innerHTML = S.boot ? '<div class="wrap auth"><div class="brand-icon" style="animation: popUp 1s infinite alternate;">...</div><p class="mu" style="margin-top:20px;font-weight:700">جارٍ جلب البيانات، يرجى الانتظار...</p></div>' : S.me ? mainView() : authView(); S.anim = false; count(); }
+function toast(msg) { const t = $('#tt'); t.innerHTML = `<span>${msg}</span><button data-a="close_toast">حسناً</button>`; t.hidden = false; clearTimeout(tmr); tmr = setTimeout(() => { t.hidden = true }, 4500); }
+function render() { $('#app').innerHTML = S.boot ? '<div class="wrap auth"><div class="brand-icon">...</div><p class="mu" style="margin-top:16px;font-weight:700">جارٍ التحميل...</p></div>' : S.me ? mainView() : authView(); count(); }
 
 function count() {
   const el = $('#bal'); if (!el) return;
-  const to = +el.dataset.v, from = S.bal == null ? 0 : S.bal; S.bal = to;
-  if (from === to) { el.textContent = money(to); return; }
-  const t0 = performance.now(), st = t => { const k = Math.min(1, (t - t0) / 600), e = 1 - Math.pow(1 - k, 3); el.textContent = money(from + (to - from) * e); if (k < 1) requestAnimationFrame(st); }; requestAnimationFrame(st);
+  const to = +el.dataset.v; S.bal = to;
+  el.textContent = money(to);
 }
 
-// التفاعلات الأساسية
 function act(a, v) {
   switch (a) {
-    case 'mode': S.mode = v; S.anim = true; render(); break;
-    case 'tab': S.tab = v; S.anim = true; window.scrollTo(0,0); render(); break;
-    case 'nav': S.m += +v; if (S.m < 0) { S.m = 11; S.y--; } if (S.m > 11) { S.m = 0; S.y++; } S.anim = true; render(); break;
-    case 'ny': S.y += +v; S.anim = true; render(); break;
-    case 'goto': S.m = +v; S.tab = 'cal'; S.anim = true; render(); break;
-    case 'today': S.y = nw().getFullYear(); S.m = nw().getMonth(); S.anim = true; render(); break;
+    case 'mode': S.mode = v; render(); break;
+    case 'tab': S.tab = v; S.confirmReset = false; window.scrollTo(0,0); render(); break;
+    case 'nav': S.m += +v; if (S.m < 0) { S.m = 11; S.y--; } if (S.m > 11) { S.m = 0; S.y++; } render(); break;
+    case 'ny': S.y += +v; render(); break;
+    case 'goto': S.m = +v; S.tab = 'cal'; render(); break;
+    case 'today': S.y = nw().getFullYear(); S.m = nw().getMonth(); render(); break;
     case 'day': if (S.multi) { S.pick.has(v) ? S.pick.delete(v) : S.pick.add(v); render(); } else openDay(v); break;
-    case 'multi': S.multi = true; S.pick.clear(); render(); toast('اضغط على الأيام لتحديدها'); break;
+    case 'multi': S.multi = true; S.pick.clear(); render(); toast('اضغط على الأيام لتحديدها ثم اختر حالتها'); break;
     case 'cancel': S.multi = false; S.pick.clear(); render(); break;
-    case 'apply': { const ks = [...S.pick].filter(k => dow(k) !== 5); if (!ks.length) { toast('حدّد أياماً غير الجمعة.'); break; } ks.forEach(k => S.d.days[k] = { s: v, x: 0, n: '' }); sync('POST', '/data/days/bulk', { dates: ks, status: v }); S.pick.clear(); S.multi = false; render(); toast('تم التحديث بنجاح.'); break; }
+    case 'apply': {
+      const ks = [...S.pick];
+      if (!ks.length) { toast('حدّد يوماً واحداً على الأقل.'); break; }
+      ks.forEach(k => S.d.days[k] = { s: v, x: 0, n: '' });
+      sync('POST', '/data/days/bulk', { dates: ks, status: v });
+      S.pick.clear(); S.multi = false; render(); toast('تم تسجيل الأيام المحددة.'); break;
+    }
     case 'pick': S.sh.s = v; document.querySelectorAll('.opt').forEach(b => b.classList.toggle('sel', b.dataset.v === v)); break;
     case 'save': {
-      const s = S.sh.s; if (!s) { $('#serr').textContent = 'اختر الحالة.'; break; }
+      const s = S.sh.s; if (!s) { $('#serr').textContent = 'اختر الحالة أولاً.'; break; }
       let x = parseFloat($('#xh').value) || 0; const n = $('#note').value.trim();
-      if (s !== 'full' && x > 0) { $('#serr').textContent = 'ساعات إضافية تسجل مع العمل فقط.'; break; }
-      if (s === 'rest' && !n) { delete S.d.days[S.sh.k]; sync('DELETE', '/data/days/' + S.sh.k); }
-      else { S.d.days[S.sh.k] = { s, x, n }; sync('PUT', '/data/days/' + S.sh.k, { status: s, extraHours: x, note: n }); }
+      if ((s === 'abs' || s === 'rest') && x > 0) x = 0;
+      S.d.days[S.sh.k] = { s, x, n };
+      sync('PUT', '/data/days/' + S.sh.k, { status: s, extraHours: x, note: n });
       closeSheet(); render(); break;
     }
     case 'clr': delete S.d.days[S.sh.k]; sync('DELETE', '/data/days/' + S.sh.k); closeSheet(); render(); break;
     case 'fill': {
       const p = S.y + '-' + pad(S.m + 1), w = nw(), cur = S.y === w.getFullYear() && S.m === w.getMonth(), ks = [];
-      for (let d = 1; d <= (cur ? w.getDate() : new Date(S.y, S.m + 1, 0).getDate()); d++) { const k = p + '-' + pad(d); if (!S.d.days[k] && dow(k) !== 5) ks.push(k); }
-      if (!ks.length) { toast('لا توجد أيام فارغة.'); break; }
-      ks.forEach(k => S.d.days[k] = { s: 'full', x: 0, n: '' }); sync('POST', '/data/days/bulk', { dates: ks, status: 'full' }); render(); toast('تمت التعبئة السريعة.'); break;
+      const maxD = cur ? w.getDate() : new Date(S.y, S.m + 1, 0).getDate();
+      for (let d = 1; d <= maxD; d++) { const k = p + '-' + pad(d); if (!S.d.days[k] && dow(k) !== 5) ks.push(k); }
+      if (!ks.length) { toast('لا توجد أيام فارغة لتعبئتها.'); break; }
+      ks.forEach(k => S.d.days[k] = { s: 'full', x: 0, n: '' });
+      sync('POST', '/data/days/bulk', { dates: ks, status: 'full' });
+      render(); toast('تمت تعبئة ' + ks.length + ' يوم عمل.'); break;
     }
     case 'addw': {
       const a = parseFloat($('#wa').value), dt = $('#wdt').value, n = $('#wn').value.trim(), er = $('#werr');
       if (!(a > 0)) { er.textContent = 'أدخل مبلغاً صحيحاً.'; break; }
       const w = { id: Date.now().toString(36), date: dt, amount: Math.round(a), n };
-      api('POST', '/data/withdrawals', { date: dt, amount: w.amount, note: n }).then(r => { w.id = r.withdrawal.id; S.d.w.push(w); render(); toast('تمت الإضافة'); }).catch(e => { er.textContent = e.message; }); break;
+      api('POST', '/data/withdrawals', { date: dt, amount: w.amount, note: n }).then(r => { w.id = r.withdrawal.id; S.d.w.push(w); render(); toast('تمت إضافة السحب'); }).catch(e => { er.textContent = e.message; }); break;
     }
     case 'delw': S.d.w = S.d.w.filter(x => x.id !== v); sync('DELETE', '/data/withdrawals/' + v); render(); break;
-    case 'theme': const th = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; document.documentElement.dataset.theme = th; wr('wt:theme', th); break;
+    case 'reset': {
+      if (!S.confirmReset) { S.confirmReset = true; render(); break; }
+      const ks = Object.keys(S.d.days);
+      const ws = [...S.d.w];
+      S.d.days = {}; S.d.w = []; S.confirmReset = false;
+      if (ks.length) sync('POST', '/data/days/bulk-delete', { dates: ks });
+      ws.forEach(w => sync('DELETE', '/data/withdrawals/' + w.id));
+      render(); toast('تم تصفير الحساب ومسح جميع البيانات بنجاح!'); break;
+    }
+    case 'theme': {
+      const th = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = th; wr('wt:theme', th); break;
+    }
     case 'out': S.me = null; S.d = null; S.tab = 'cal'; tok = ''; wr('wt:tok', ''); render(); break;
     case 'close_toast': $('#tt').hidden = true; break;
   }
 }
 
 document.addEventListener('click', e => { const el = e.target.closest('[data-a]'); if (el) act(el.dataset.a, el.dataset.v); else if (e.target.id === 'ov') closeSheet(); });
-document.addEventListener('input', e => { if (e.target.dataset.k) { S.d.set[e.target.dataset.k] = parseFloat(e.target.value) || 0; clearTimeout(t2); t2 = setTimeout(() => sync('PUT', '/data/settings', S.d.set), 500); } });
+document.addEventListener('input', e => {
+  if (e.target.dataset.k) {
+    S.d.set[e.target.dataset.k] = parseFloat(e.target.value) || 0;
+    const pv = $('#pv'); if (pv) pv.innerHTML = pvText();
+    clearTimeout(t2); t2 = setTimeout(() => sync('PUT', '/data/settings', S.d.set), 500);
+  }
+});
 
-// المصادقة (دخول/تسجيل)
 document.addEventListener('submit', async e => {
   if (e.target.id !== 'af') return; e.preventDefault();
   const f = new FormData(e.target), phone = String(f.get('phone')).replace(/\s/g, ''), pass = String(f.get('pass')), name = String(f.get('name') || '').trim();
   const err = $('#err'), b = $('#sb'), reg = S.mode === 'reg'; err.textContent = '';
-  if (reg && pass.length < 6) { err.textContent = 'كلمة السر قصيرة.'; return; }
-  b.disabled = true; const old = b.textContent; b.textContent = 'الرجاء الانتظار...';
+  if (reg && pass.length < 6) { err.textContent = 'كلمة السر يجب أن تكون 6 أحرف أو أكثر.'; return; }
+  b.disabled = true; const old = b.textContent; b.textContent = 'جارٍ الاتصال...';
   try {
     const r = await api('POST', '/auth/' + (reg ? 'register' : 'login'), { name, phone, password: pass });
     tok = r.token; wr('wt:tok', tok);
     fromServer(await api('GET', '/data'));
-    S.tab = 'cal'; S.anim = true; render();
+    S.tab = 'cal'; render();
   } catch (x) { err.textContent = x.message; b.disabled = false; b.textContent = old; }
 });
 
-// بدء التشغيل
 const t_set = rd('wt:theme'); if (t_set) document.documentElement.dataset.theme = t_set;
-if (tok) { S.boot = 1; render(); api('GET', '/data').then(fromServer).catch(() => { tok = ''; wr('wt:tok', ''); }).finally(() => { S.boot = 0; S.anim = true; render(); }); } else { render(); }
+if (tok) { S.boot = 1; render(); api('GET', '/data').then(fromServer).catch(() => { tok = ''; wr('wt:tok', ''); }).finally(() => { S.boot = 0; render(); }); } else { render(); }
 </script>
 </body>
 </html>
